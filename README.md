@@ -43,6 +43,7 @@ edit made to the product's copy instead of here fails that product's build.
 
 ## Versions
 
+- 1.2.0: ticks and radios in a filter bar keep their own size; an `<input>` with no type gets the control finish; the README says why a select's `background` shorthand must not be used.
 - 1.1.0: `.drawer.wide`, 620px, for a drawer carrying a form with a row of actions (Aimelia's task drawer).
 - 1.0.0: the first shared version, taken from Signal's refined finish and Client Operations' measured status fills.
 
@@ -56,6 +57,8 @@ edit made to the product's copy instead of here fails that product's build.
   `--green` is too faint for an 11px pill.
 - Off-screen panels are hidden, not only moved, so their shadow never shows.
 - Segoe UI first, the platform's face after. Never `system-ui`.
+- A select's chevron is a background image. Style a select with
+  `background-color`, never the `background` shorthand, or the chevron goes.
 
 The palette's measured contrast table is `BRANDING.md` in
 payrollcommandcenter. It belongs here, beside the stylesheet it governs.
