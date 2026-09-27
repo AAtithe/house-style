@@ -1,0 +1,9 @@
+{
+  "name": "ws-house-style",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Williams, Stanley & Co. house style, shared by every product.",
+  "scripts": {
+    "test": "node test.js"
+  }
+}
