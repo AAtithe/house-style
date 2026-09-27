@@ -9,15 +9,15 @@ const digest = (css) => crypto.createHash('sha256').update(css, 'utf8').digest('
 function stamp(css, version) {
   return '/* ws-house.css ' + version + ', sha256 ' + digest(css) + '\n' +
     '   Shared by every Williams, Stanley & Co. product. Do not edit this copy:\n' +
-    '   change WilliamsStanleyCo/house-style and run its sync into this file. */\n' + css;
+    '   change AAtithe/house-style and run its sync into this file. */\n' + css;
 }
 
 // Returns { version, css } for a sound copy; throws on an edited or unstamped one.
 function check(stamped) {
   const m = stamped.match(HEAD);
-  if (!m) throw new Error('ws-house.css has no house-style stamp: sync it from WilliamsStanleyCo/house-style');
+  if (!m) throw new Error('ws-house.css has no house-style stamp: sync it from AAtithe/house-style');
   const css = stamped.slice(m[0].length);
-  if (digest(css) !== m[2]) throw new Error('ws-house.css ' + m[1] + ' has been edited in this product: change WilliamsStanleyCo/house-style and sync it instead');
+  if (digest(css) !== m[2]) throw new Error('ws-house.css ' + m[1] + ' has been edited in this product: change AAtithe/house-style and sync it instead');
   return { version: m[1], css };
 }
 
