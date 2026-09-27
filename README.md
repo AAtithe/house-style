@@ -41,6 +41,11 @@ edit made to the product's copy instead of here fails that product's build.
 3. In each product: `node ../house-style/sync.js <its copy>`, run its tests,
    look at it at 1400px and 390px, and ship.
 
+## Versions
+
+- 1.1.0: `.drawer.wide`, 620px, for a drawer carrying a form with a row of actions (Aimelia's task drawer).
+- 1.0.0: the first shared version, taken from Signal's refined finish and Client Operations' measured status fills.
+
 ## The rules
 
 - Every colour comes from a token on `:root`. White aside, no hex elsewhere.
