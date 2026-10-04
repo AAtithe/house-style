@@ -45,14 +45,17 @@ Rules:
   never let a layout stretch it: in a flex column give it `align-self:flex-start`
   or `flex:none`. A logo pulled wide looks broken at once.
 - Navy or white for the letters, nothing else. The reversed files are for
-  navy grounds only.
+  navy grounds only. Payroll's BRANDING.md says internal apps put the logo on
+  white only; the reversed files exist for the client deal room's navy header.
+  Whether internal apps may use them too is a brand decision still to make.
 - Keep clear space of at least the height of the &CO around a mark.
 - The firm's name in words is "Williams, Stanley & Co".
 - For print or signage, use the designer's master artwork if the firm holds
   it: these are traced and are sharp at any screen size, not a print master.
 
 To take the logos into a product: `node ../house-style/sync.js --brand <folder>`,
-for example `public/brand` or `assets/brand`. Add it to the usual sync to take
+for example `public/brand` or `assets/brand`. For a folder a website serves,
+add `--no-readme` so the copy's provenance note is not published. Add it to the usual sync to take
 both at once: `node ../house-style/sync.js build/house/ws-house.css --brand assets/brand`.
 
 | Product | Repository | Its logos |
@@ -60,6 +63,7 @@ both at once: `node ../house-style/sync.js build/house/ws-house.css --brand asse
 | Deal Room | WilliamsStanleyCo/wsdealroom | `public/brand/` |
 | WSOP (Client Operations) | WilliamsStanleyCo/WSCIP | `assets/brand/` |
 | Payroll | WilliamsStanleyCo/payrollcommandcenter | `assets/brand/` |
+| Website | WilliamsStanleyCo/williamsstanleymarketing | `brand/`, stored, not published |
 
 ## Why a copy in each product, and not a link
 

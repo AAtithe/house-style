@@ -9,6 +9,8 @@
 // product too, or run with --brand <folder> alone to copy only the logos:
 //   node sync.js build/house/ws-house.css --brand assets/brand
 //   node sync.js --brand public/brand
+// The copy gets a README saying where it came from. Add --no-readme for a folder
+// a website serves, so that note is not published.
 const fs = require('fs');
 const path = require('path');
 const house = require('./house');
@@ -16,8 +18,9 @@ const house = require('./house');
 const args = process.argv.slice(2);
 const b = args.indexOf('--brand');
 const brandDir = b >= 0 ? args[b + 1] : null;
+const readme = !args.includes('--no-readme');
 if (b >= 0 && !brandDir) { console.error('--brand needs a folder'); process.exit(1); }
-const target = args.filter((_, i) => b < 0 || (i !== b && i !== b + 1))[0];
+const target = args.filter((a, i) => a !== '--no-readme' && (b < 0 || (i !== b && i !== b + 1)))[0];
 if (!target && !brandDir) { console.error('Usage: node sync.js <product copy of ws-house.css> [--brand <folder>]'); process.exit(1); }
 const { version } = require('./package.json');
 
@@ -33,7 +36,7 @@ if (brandDir) {
   fs.mkdirSync(path.resolve(brandDir), { recursive: true });
   const files = fs.readdirSync(from).filter((f) => /\.(svg|png)$/.test(f));
   for (const f of files) fs.copyFileSync(path.join(from, f), path.join(brandDir, f));
-  fs.writeFileSync(path.join(brandDir, 'README.md'),
+  if (readme) fs.writeFileSync(path.join(brandDir, 'README.md'),
     '# Williams, Stanley & Co logos\n\n' +
     'Copied from AAtithe/house-style ' + version + ' (brand/). Do not edit these copies:\n' +
     'change them in house-style and run its sync. Usage rules: the house-style README, Logos.\n');
