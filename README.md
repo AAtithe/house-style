@@ -20,6 +20,47 @@ A product loads this first and its own rules after, so a product rule of the
 same specificity wins. That is how a product extends a component. It is not
 how a product changes one: a change to a shared component is made here.
 
+## Logos
+
+`brand/` holds the firm's marks. Every product takes its logos from here,
+the same way it takes the stylesheet.
+
+| File | Use |
+|---|---|
+| `ws-wordmark.svg` | WILLIAMS STANLEY &CO on white or light backgrounds |
+| `ws-wordmark-reversed.svg` | The same on navy: the letters white, &CO and the rule kept |
+| `ws-monogram.svg` | WS with &CO and the coral rule, for small spaces |
+| `ws-monogram-reversed.svg` | The monogram on navy |
+| `*.png` | The same four at high resolution, transparent, for email and PDFs, which cannot use SVG |
+| `ws-icon-256.png` | The square app icon and favicon: the reversed monogram on navy |
+
+The SVGs were traced from the firm's logo artwork, one shape per colour, in
+exactly `--navy`, `--wsblue` and `--coral`. The tests hold them to those
+colours and refuse any script inside an SVG.
+
+Rules:
+
+- Use the SVG on screens, the PNG only where SVG cannot go (email, PDF).
+- Size a mark by its height and let the width follow. Never set both, and
+  never let a layout stretch it: in a flex column give it `align-self:flex-start`
+  or `flex:none`. A logo pulled wide looks broken at once.
+- Navy or white for the letters, nothing else. The reversed files are for
+  navy grounds only.
+- Keep clear space of at least the height of the &CO around a mark.
+- The firm's name in words is "Williams, Stanley & Co".
+- For print or signage, use the designer's master artwork if the firm holds
+  it: these are traced and are sharp at any screen size, not a print master.
+
+To take the logos into a product: `node ../house-style/sync.js --brand <folder>`,
+for example `public/brand` or `assets/brand`. Add it to the usual sync to take
+both at once: `node ../house-style/sync.js build/house/ws-house.css --brand assets/brand`.
+
+| Product | Repository | Its logos |
+|---|---|---|
+| Deal Room | WilliamsStanleyCo/wsdealroom | `public/brand/` |
+| WSOP (Client Operations) | WilliamsStanleyCo/WSCIP | `assets/brand/` |
+| Payroll | WilliamsStanleyCo/payrollcommandcenter | `assets/brand/` |
+
 ## Why a copy in each product, and not a link
 
 Each product carries its own stamped copy rather than loading this file from
@@ -43,6 +84,7 @@ edit made to the product's copy instead of here fails that product's build.
 
 ## Versions
 
+- 1.3.0: the logos, in `brand/`: wordmark and monogram as SVG and high-resolution PNG, normal and reversed, and the icon. `sync.js --brand <folder>` copies them into a product. The stylesheet is unchanged.
 - 1.2.0: ticks and radios in a filter bar keep their own size; an `<input>` with no type gets the control finish; the README says why a select's `background` shorthand must not be used.
 - 1.1.0: `.drawer.wide`, 620px, for a drawer carrying a form with a row of actions (Aimelia's task drawer).
 - 1.0.0: the first shared version, taken from Signal's refined finish and Client Operations' measured status fills.
