@@ -53,6 +53,10 @@ Rules:
 - For print or signage, use the designer's master artwork if the firm holds
   it: these are traced and are sharp at any screen size, not a print master.
 
+A product that serves its copy with `--no-readme` has no provenance note, so
+it pins each file's SHA-256 in its own tests instead: a logo edited there
+fails, and a deliberate sync of a new version replaces the fingerprints.
+
 To take the logos into a product: `node ../house-style/sync.js --brand <folder>`,
 for example `public/brand` or `assets/brand`. For a folder a website serves,
 add `--no-readme` so the copy's provenance note is not published. Add it to the usual sync to take
@@ -64,6 +68,8 @@ both at once: `node ../house-style/sync.js build/house/ws-house.css --brand asse
 | WSOP (Client Operations) | WilliamsStanleyCo/WSCIP | `assets/brand/` |
 | Payroll | WilliamsStanleyCo/payrollcommandcenter | `assets/brand/` |
 | Website | WilliamsStanleyCo/williamsstanleymarketing | `brand/`, stored, not published |
+| Signal | WilliamsStanleyCo/Signal | `assets/brand/`, `--no-readme`; fingerprints pinned in `db/test-build.js` |
+| Aimelia | AAtithe/Aimelia | `public/brand/`, `--no-readme`; fingerprints pinned in `tests/house.test.ts` |
 
 ## Why a copy in each product, and not a link
 
